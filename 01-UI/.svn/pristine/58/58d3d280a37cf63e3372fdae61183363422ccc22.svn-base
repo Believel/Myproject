@@ -1,0 +1,25 @@
+<aside class="al-sidebar" >
+  <ul class="al-sidebar-list">
+    <li class="al-sidebar-list-item">
+      <a href="#!/home">
+        <i></i><span>外包装维护</span>
+      </a>
+     <!--  <ul>
+        <li class="with-sub-menu" class="ba-sidebar-sublist-item">
+          <a class="al-sidebar-list-link subitem-submenu-link"><span>222</span>
+            <b class="fa"></b>
+          </a>
+          <ul class="al-sidebar-sublist subitem-submenu-list">
+            <li>
+              <a class="al-sidebar-list-link">22222222</a>
+              <a>3333</a>
+            </li>
+          </ul>
+          <a class="al-sidebar-list-link">3333</a>
+          <a> 44444</a>
+        </li>
+      </ul> -->
+    </li>
+  </ul>
+  <div class="sidebar-hover-elem"></div>
+</aside>

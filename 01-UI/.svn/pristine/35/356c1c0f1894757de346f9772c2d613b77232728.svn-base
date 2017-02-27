@@ -1,0 +1,33 @@
+<ul class="list-inline clearfix text-right">
+    <li><a ui-sref="add" class="btn btn-primary">新增</a></li>
+    <li><a href="javascript:;" ng-click="del()" class="btn btn-primary">移除</a></li>
+    <li><a ui-sref="detail" class="btn btn-primary">属性</a></li>
+    <li><a href="#" class="btn btn-primary">关闭</a></li>
+</ul>
+<div style="overflow:auto">
+    <table class="table table-hover table-bordered" st-table="smartTableData">
+        <thead>
+            <tr class="sortable">
+                <th ng-repeat="i in wbzDataTitle" class="text-center">{{i}}</th>
+            </tr>
+            <tr>
+                <th ng-repeat="s in wbzDataTitle">
+                    <input placeholder="" class="input-sm form-control search-input" type="search" />
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-click="setColor($event.target,$index)" ng-repeat="it in wbzData">
+                <td class="text-center" ng-repeat="i in wbzDataTitle">{{it[i]}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <nav>
+            <ul class="pagination">
+                <li ng-class="{active:s==pageIndex}" ng-repeat="s in showPage"><a href="javascript:;" ng-click="setPage($event.target)">{{s}}</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
+

@@ -1,0 +1,53 @@
+<ul class="list-inline clearfix text-right">
+    <li><a ui-sref="add" class="btn btn-primary">新增</a></li>
+    <li><a href="#" class="btn btn-primary">移除</a></li>
+    <li><a ui-sref="detail" class="btn btn-primary">属性</a></li>
+    <li><a href="#" class="btn btn-primary">关闭</a></li>
+</ul>
+<div style="overflow:auto">
+    <table class="table table-hover table-bordered" st-table="smartTableData">
+        <thead>
+            <tr class="sortable">
+                <th ng-repeat="i in wbzDataTitle" class="text-center">{{i}}</th>
+            </tr>
+            <tr>
+                <th ng-repeat="s in wbzDataTitle">
+                    <input placeholder="" class="input-sm form-control search-input" type="search" />
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-click="setColor($event.target)" ng-repeat="it in wbzData.data">
+                <td class="text-center" ng-repeat="i in wbzDataTitle">{{it[i]}}</td>
+                <!-- <td class="text-center">{{it.TextID}}</td>
+                <td class="text-center">{{it.FUID}}</td>
+                <td class="text-center">3333</td>
+                <td class="text-center">4444</td>
+                <td class="text-center">5555</td>
+                <td class="text-center">666</td>
+                <td class="text-center">0080</td>
+                <td class="text-center">0080</td>
+                <td class="text-center">0080</td>
+                <td class="text-center">
+                    <input type="checkbox" disabled checked>
+                </td>
+                <td class="text-center">
+                    <input type="checkbox" disabled checked>
+                </td>
+                <td class="text-center">0080</td>
+                <td class="text-center">2017-1-8</td> -->
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <nav>
+            <ul class="pagination">
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>

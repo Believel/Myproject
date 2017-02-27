@@ -1,0 +1,30 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prestart": "npm install",
+    "start": "http-server -p 7088 -o -c-1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Believel/Myproject.git"
+  },
+  "author": "believel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Believel/Myproject/issues"
+  },
+  "homepage": "https://github.com/Believel/Myproject#readme",
+  "devDependencies": {
+    "angular": "^1.6.2",
+    "angular-route": "^1.6.2",
+    "angular-sanitize": "^1.6.2",
+    "angular-ui-router": "^0.4.2",
+    "bootstrap": "^3.3.7",
+    "http-server": "^0.9.0",
+    "jquery": "^3.1.1"
+  }
+}
