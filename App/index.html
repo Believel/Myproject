@@ -9,10 +9,20 @@
   <title></title>
   <link href="../node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
   <link href="./css/main.css" rel="stylesheet">
-  <script src="../node_modules/jquery/dist/jquery.js"></script>
+  <link rel="stylesheet" href="css/font-awesome-4.7.0/css/font-awesome.css">
+  <link rel="stylesheet" href="../node_modules/angular-toastr/dist/angular-toastr.css">
+  <!-- <link rel="stylesheet" href="../node_modules/ng-dialog/css/ngDialog.min.css">
+  <link rel="stylesheet" href="../node_modules/ng-dialog/css/ngDialog-theme-default.css">
+ -->  <script src="../node_modules/jquery/dist/jquery.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.js"></script>
   <script src="../node_modules/angular/angular.js"></script>
   <script src="../node_modules/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="../node_modules/angular-animate/angular-animate.js"></script>
+  <!-- 弹窗插件 -->
+  <script src="../node_modules/angular-toastr/dist/angular-toastr.tpls.js"></script>
+  <!-- dialog -->
+  <!-- 弹出对话框插件 -->
+  <!--<script src="../node_modules/ng-dialog/js/ngDialog.js"></script>-->
   <script src="./app.js"></script>
 </head>
 
@@ -39,14 +49,33 @@
     </div>
   </nav>
   <div class="container-fluid">
-  <!--   -->
     <div class="row" ng-controller="SidebarController">
-      <div class="col-sm-3 col-md-2 sidebar" style="background-color: #1C2B36" >
-        <ul class="nav nav-sidebar">
+    <!-- style="background-color: #1C2B36" -->
+      <div class="col-sm-3 col-md-2 sidebar">
+       <!--  <ul class="nav nav-sidebar">
           <li class="active"><a ui-sref="packing">常用</a></li>
           <li><a ui-sref="stock">库存</a></li>
           <li><a ui-sref="order">订单管理</a></li>
-        </ul>
+        </ul> -->
+          <ul class="sidebar-menu">
+              <li class="header">主导航</li>
+              <li class="treeview" ng-repeat="n1 in navbar">
+                <a ui-sref="{{n1.link}}">
+                  <i  ng-class="n1.icon"></i> <span ng-bind="n1.label"></span>
+                  <i class="fa fa-angle-right pull-right"></i>
+                </a>
+                <ul class="treeview-menu">
+                  <li ng-repeat="n2 in n1.children">
+                    <a ui-sref="{{n2.link}}"><i class="fa fa-circle-o"></i> <span ng-bind="n2.label"></span> <i class="fa fa-angle-right pull-right"></i></a>
+                    <ul class="treeview-menu">
+                      <li ng-repeat="n3 in n2.children">
+                        <a ui-sref="{{n3.link}}"><i class="fa fa-circle-o"></i> <span ng-bind="n3.label"></span> <i class="fa fa-angle-right pull-right"></i></a>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+               </li>
+           </ul>
       </div>
       <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main" ui-view>
       </div>

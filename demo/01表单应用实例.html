@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>表单实例</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <style>
+        label{ font-weight: 100;}
+        .formDiv h2{ text-align: center; font-size: .32rem}
+        .groupDiv{ margin: 10px 0; font-size: .18rem;}
+        .groupDiv input{ width: 85%;}
+        .error{ color: red; text-indent: 2em;display: none;}
+         
+        @media screen and (max-width: 640px){
+            .groupDiv input{ width: 100%;}
+        }
+ </style>
+</head>
+<body>
+       <div class="container formDiv">
+        <h2>AngularJS 表单验证应用实例</h2>
+        <div class="col-md-6 col-md-offset-3">
+            <form name="userForm" novalidate>
+                <div class="groupDiv clearfix">
+                    <div class="col-xs-4 col-sm-4 col-md-2">
+                        <label for="name">用户名：</label>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-10">
+                        <input type="text" name="name" id="name" ng-model="user.name" required value="zzz" />
+                    </div>
+                    <div class="col-md-10 error">
+                        <span ng-show="userForm.name.$error.required">用户名必填！</span>
+                    </div>
+                </div>
+                <div class="groupDiv clearfix">
+                    <div class="col-xs-4 col-sm-4 col-md-2">
+                        <label for="pwd">密码：</label>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-10">
+                        <input type="password" name="pwd" id="pwd" ng-model="user.pwd" ng-minlength="4" ng-maxlength="16" required />
+                    </div>
+                    <div class="col-md-10 error">
+                        <span ng-show="userForm.pwd.$error.required">密码必填！</span>
+                        <span ng-show="userForm.pwd.$error.minlength">最小长度为4</span>
+                        <span ng-show="userForm.pwd.$error.maxlength">最大长度为16</span>
+                    </div>
+                </div>
+                <div class="groupDiv clearfix">
+                    <div class="col-xs-4 col-sm-4 col-md-2">
+                        <label for="email">邮箱：</label>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-10">
+                        <input type="email" name="email" id="email" ng-model="user.email" required />
+                    </div>
+                    <div class="col-md-10 error">
+                        <span ng-show="userForm.email.$error.required">email必填！</span>
+                        <span ng-show="userForm.email.$error.email">email格式错误！</span>
+                    </div>
+                </div>
+                <div class="groupDiv clearfix">
+                    <div class="col-xs-4 col-sm-4 col-md-2">
+                        <label for="url">主页：</label>
+                    </div>
+                    <div class="col-xs-8 col-sm-8 col-md-10">
+                        <input type="url" name="homepage" id="homepage" ng-model="user.homepage" />
+                    </div>
+                    <div class="col-md-10 error">
+                        <span ng-show="userForm.homepage.$error.url">主页格式错误！必须包含http://</span>
+                    </div>
+                </div>
+                                <div class="groupDiv">
+                    <input type="button" name="submit" id="submit" ng-disabled="userForm.$invalid" ng-click="regist()" value="submit" />                
+                    </div>
+ 
+                      </form>
+        </div>
+    </div>
+
+  
+</body>
+<script src="../node_modules/angular/angular.js"></script>
+<script>
+var myApp = angular.module('app',[])
+  myApp.controller('myCtrl', function($scope) {
+   $scope.user={
+        name:"willim",
+        pwd:"123456",
+        email: "qq123@qq.com",
+        homepage: "http://blog.csdn.net/eadio"
+    };
+    $scope.msg="";
+    $scope.regist=function(){
+        //提交资料保存入库
+        //alert($scope.user.name);
+        $scope.msg="保存成功";
+    }
+});
+</script>
+</html>
+ <!-- var form1 = document.forms["form1"];//forms 集合可返回对文档中所有 Form 对象的引用。
+              console.log(form1);
+              var modified = false;//设定一个判断的标志
+              var filed = form1.salerName;//只对文本输入类型有效(text,textarea, file)
+              var fileds = form1.country;//对checkbox, radio有效
+              var select = form1.cates;//对select
+              var options = select.options;
+              
+              if(filed.value != field.defaultValue){
+                  modified = true;
+              }
+              for(var i =0; i<fields.length; i++){
+                  if(fileds[i].checked != fileds[i].defaultChecked){
+                    modified = true;
+                    break;
+                  }
+              }
+              for(var j=0; j<options.length; i++){
+                  if(options[i].defaultSelected && select.selectedIndex==j){
+                      modified = true; 
+                      break;
+                  }
+              }
+ -->

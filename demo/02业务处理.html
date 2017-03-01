@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="UTF-8">
+  <title>表单实例</title>
+  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+  <style>
+       
+ </style>
+</head>
+<body>
+    <div ng-controller="myCtrl">
+        <div>
+            <div class="box" ng-if="userName=='zhang'">
+                Test Box
+            </div>
+        </div>
+        <div class="search">
+            <input ng-model="keyIn">
+            <button ng-click="searchInput();">搜索</button>
+        </div>
+        <div class="list" ng-repeat="item in result">
+            <span>{{item.goodsName}}</span>
+            <button ng-click="delete($index)">-</button>
+            <button id={{$index}} ng-click="delete($event)">另-</button>
+            
+        </div>
+        
+    </div>
+
+  
+</body>
+<script src="../node_modules/angular/angular.js"></script>
+<script>
+        var myApp = angular.module('app',[])
+  
+
+</script>
+</html>

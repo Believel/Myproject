@@ -1,19 +1,39 @@
+  <button id="ajax" type="button" class="btn btn-primary" ng-click="request();">请求数据</button>
+   <modal></modal> 
+   {{master}}
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" id="modal2">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">你要保存修改的数据吗？</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" ng-click="No();">No</button>
+        <button type="button" class="btn btn-primary" ng-click="Yes();">Yes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
   <div class="panel">
       <div class="panel-heading">
         <div class="col-sm-6">容器配置</div>
         <div class="col-sm-6 text-right"><a href="#">容器</a></div>
       </div> 
       <div class="panel-body">
-        <div class="row" style="border-bottom: 1px solid rgba(0, 0, 0, 0.12);padding:0;">
-
-               <div class="col-sm-6"><h3>Container Properties</h3><p ng-bind="list.ID"></p></div>
+       <form  class="form-horizontal" id="myForm" name="form1">
+           <div class="row" style="border-bottom: 1px solid rgba(0, 0, 0, 0.12);padding:0;">
+               <div class="col-sm-6"><h3>Container Properties</h3><p ng-bind="list.Container"></p></div>
                 <ul class="list-inline clearfix text-right col-sm-6">
-                    <li><a href="#" class="btn btn-primary">保存</a></li>
-                    <li><a href="#" class="btn btn-primary">刷新</a></li>
+                    <li>
+                      <button type="button"  class="btn btn-primary"  ng-click="save();">保存</button>
+                    </li>
+                    <li>
+                      <button type="button" class="btn btn-primary" ng-click="refresh()">刷新</button>
+                    </li>
                     <li><a href="#" class="btn btn-primary">关闭</a></li>
                 </ul>
-        </div>
-        <form action="#" class="form-horizontal" id="myForm">
+          </div>
             <div class="menu_list">
                   <h4 style="padding-top: 10px" class="menu_head">
                     <span class="glyphicon glyphicon-triangle-bottom icon" style="padding-right:10px;"></span>
@@ -23,7 +43,7 @@
                     <div class="form-group">
                       <label class="col-sm-1 control-label">容器</label>
                       <div class="col-sm-2">
-                          <input type="text" placeholder="2006" class="form-control disabled">
+                          <input type="text" ng-model="list.Container" value="{{list.Container}}" class="form-control Container " disabled="disabled" name="Container" placeholder="2006">
                       </div> 
                       <div class="col-sm-1 text-right">
                           <p>容器分类</p>
@@ -59,36 +79,44 @@
                   <div class="form-group">
                       <label class="col-sm-1 control-label">容器状态</label>
                       <div class="col-sm-2">
-                          <select class="form-control">
-                              <option>加载</option>
+                          <select class="form-control status" name="ContainerStatus">
+                              <!-- <option>加载</option>
                               <option>发货</option>
                               <option>已准备</option>
                               <option>已分拣</option>
                               <option>已盘点</option>
                               <option>新的</option>
                               <option>盒装</option>
-                              <option>部署</option>
+                              <option>部署</option> -->
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                              <option>6</option>
+                              <option>7</option>
+                              <option>8</option>
                           </select>
                       </div> 
                       <label class="col-sm-1 control-label">定义类型</label>
                       <div class="col-sm-3">
-                          <input type="text" class="form-control ">
+                          <input type="text" class="form-control containerclassId" ng-model="list.ContainerClassID" name="ContainerClassID">
                       </div> 
                       <label class="checkbox-inline">
-                        <input type="checkbox"  value="option1" style="top: 5px"> <span>移动标记</span>
+                        <input type="checkbox" class="MobileFlag" value="false" style="top: 5px" ng-model="list.MobileFlag" name="MobileFlag" ng-true-value="true" ng-false-value="false"> <span>移动标记</span>
                       </label>
                       <label class="checkbox-inline">
-                        <input type="checkbox" value="option2" style="top: 5px"> <span>永久标记</span>
+                        <input type="checkbox"  value="false" style="top: 5px" ng-true-value="true" ng-false-value="false"> <span>永久标记</span>
                       </label>
                   </div>
                   <div class="form-group">
                       <label class="col-sm-1 control-label">计算重量</label>
                       <div class="col-sm-2">
-                          <input type="number" class="form-control "  step="0.000001">
+                          <input type="number" class="form-control weight" min="0" step="0.000001" ng-model="list.CalculatedWeight" name="CalculatedWeight">
                       </div> 
                       <label class="col-sm-1 control-label">实际类型</label>
                       <div class="col-sm-2">
-                          <input type="number" class="form-control " step="0.000001">
+                          <input type="number" class="form-control actual" min="0" step="0.000001" ng-model="list.ActualWeight" name="ActualWeight">
                       </div> 
                   </div>
 
@@ -102,7 +130,7 @@
                       <div class="form-group">
                       <div class="col-sm-1 text-right">
                           <p>工厂</p>
-                          <p>C1P1</p>
+                          <p ng-bind="list.Facility"></p>
                       </div>
                       <div class="col-sm-2 text-right">
                         <button class="glyphicon glyphicon-floppy-saved btn btn-default" type="button"  ng-click="showModal();"></button>
@@ -110,15 +138,15 @@
                       </div>
                       <div class="col-sm-1">
                           <p>仓库</p>
-                          <p>MAIN</p>
+                          <p ng-bind="list.Warehouse"></p>
                       </div>
                       <div class="col-sm-2 text-right">
                         <button class="glyphicon glyphicon-floppy-saved btn btn-default"></button>
                         <button class="glyphicon glyphicon-floppy-remove btn btn-default"></button>
                       </div>
-                      <div class="col-sm-1">
+                      <div class="col-sm-2">
                           <p>仓库地点</p>
-                          <p>地址 14</p>
+                          <p>地址 {{list.WarehouseLocationID}}</p>
                       </div>
                       <div class="col-sm-2 text-right">
                         <button class="glyphicon glyphicon-floppy-saved btn btn-default disabled"></button>
@@ -144,11 +172,11 @@
                         <div class="form-group">
                             <label class="col-sm-2 control-label">最终维护日期</label>
                             <div class="col-sm-3">
-                                <input type="date" class="form-control"aria-describedby="inputSuccess5Status" value="0000-00-00">
+                                <input type="date" class="form-control LastMaintenanceDate"aria-describedby="inputSuccess5Status" value="0000-00-00" ng-model="list.LastMaintenanceDate">
                             </div>
                             <label class="col-sm-2 control-label">下一个维护日期</label>
                             <div class="col-sm-3">
-                                 <input type="date" class="form-control"aria-describedby="inputSuccess5Status"  value="0000-00-00">
+                                 <input type="date" class="form-control NextMaintenanceDate"aria-describedby="inputSuccess5Status"  value="0000-00-00" ng-model="list.NextMaintenanceDate">
                             </div> 
                         </div>
                   </div>  
@@ -179,7 +207,6 @@
                   <div class="menu_body"></div>
             </div>  
         </form>
-    </div>
-   <modal></modal>
+    </div>  
 
 </div>
